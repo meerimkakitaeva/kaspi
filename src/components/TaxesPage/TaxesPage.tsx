@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Card from "../UI/Card";
 import { Link, useNavigate } from "react-router-dom";
 import arrowIcon from "../../assets/arrowLeft.svg";
-import { income, ipn, opv, so, vosms } from "../../constants";
 import Button from "../UI/Button";
+import { getFormData, getIncome } from "../../constants";
 
 const TaxesPage = () => {
   const navigate = useNavigate();
@@ -14,6 +14,12 @@ const TaxesPage = () => {
     opv: false,
     vosms: false,
   });
+
+  const [income, setIncome] = useState(0);
+  const [ipn, setIpn] = useState(0);
+  const [so, setSo] = useState(0);
+  const [opv, setOpv] = useState(0);
+  const [vosms, setVosms] = useState(0);
 
   const onCardClick = (card: string, selected: boolean) => {
     setSelectedCard((prevState) => ({
@@ -32,8 +38,11 @@ const TaxesPage = () => {
   };
 
   const resetData = () => {
-    localStorage.removeItems("formData", "taxesData");
+    localStorage.removeItem("formData");
+    localStorage.removeItem("taxesData");
   };
+
+  const formData = getFormData();
 
   const onSend = () => {
     if (Object.values(selectedCard).some(Boolean)) {
@@ -51,6 +60,20 @@ const TaxesPage = () => {
       navigate("/final");
     }
   };
+
+  useEffect(() => {
+    const income = getIncome();
+
+    setIncome(income);
+    setIpn(Math.round(income * 0.03));
+    setSo(Math.round(income * 0.035));
+    setOpv(Math.round(income * 0.1));
+    setVosms(Math.round(income * 0.05));
+
+    if (!formData) {
+      navigate("/");
+    }
+  }, [formData]);
 
   return (
     <div
