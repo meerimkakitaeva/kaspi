@@ -37,11 +37,6 @@ const TaxesPage = () => {
     return total;
   };
 
-  const resetData = () => {
-    localStorage.removeItem("formData");
-    localStorage.removeItem("taxesData");
-  };
-
   const formData = getFormData();
 
   const onSend = () => {
@@ -53,10 +48,10 @@ const TaxesPage = () => {
         so: selectedCard.so ? so : 0,
         opv: selectedCard.opv ? opv : 0,
         vosms: selectedCard.vosms ? vosms : 0,
-        total: total,
       };
 
       localStorage.setItem("taxesData", JSON.stringify(taxesData));
+      localStorage.setItem("totalTaxes", JSON.stringify(total));
       navigate("/final");
     }
   };
@@ -87,7 +82,6 @@ const TaxesPage = () => {
           color: "black",
         }}
         to="/form"
-        onClick={resetData}
         className="general_titles"
       >
         <img
