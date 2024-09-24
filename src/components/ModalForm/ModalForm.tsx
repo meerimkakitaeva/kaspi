@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { ICalculate } from "../../types";
+import TextField from "../UI/Textfield";
 
 const ModalForm = () => {
   const [state, setState] = useState<ICalculate>({
@@ -16,7 +17,6 @@ const ModalForm = () => {
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {
     const { name, value } = e.target;
-
     setState((prevState) => {
       return { ...prevState, [name]: value };
     });
@@ -25,100 +25,76 @@ const ModalForm = () => {
   return (
     <div
       className="container"
-      style={{ display: "flex", flexDirection: "column", maxWidth: "420px" }}
+      style={{ display: "flex", flexDirection: "column", maxWidth: "365px" }}
     >
-      <h4 style={{ lineHeight: "40px", fontSize: "24px", marginTop: "50px" }}>
+      <h4
+        style={{
+          lineHeight: "40px",
+          fontSize: "24px",
+          marginTop: "40px",
+          fontStyle: "italic",
+          marginBottom: "23px",
+        }}
+      >
         Заплатить налоги за ИП
       </h4>
-      <p style={{ margin: "0 0 8px 0", padding: "0px 40px 0px 0px" }}>
+      <p style={{ margin: "0 0 15px 0" }}>
         Теперь ИП на упрощенке обязан уплачивать за себя ИПН и социальный налог.
         В связи с этими изменениями ИП должен платить за себя:
       </p>
       <div className="input_wrapp">
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <div className="input_container">
-            <label htmlFor="name" className="label">
-              Имя
-            </label>
-            <input
-              type="text"
-              id="name"
-              placeholder="Имя"
-              value={state.name}
-              onChange={inputChangeHandler}
-              name="name"
-            />
-          </div>
-
-          <div className="input_container">
-            <label htmlFor="surname" className="label">
-              Фамилия
-            </label>
-            <input
-              type="text"
-              id="surname"
-              placeholder="Фамилия"
-              value={state.surname}
-              onChange={inputChangeHandler}
-              name="surname"
-            />
-          </div>
-        </div>
-
         <div
-          className="input_container"
-          style={{ display: "flex", flexDirection: "column" }}
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+          }}
         >
-          <label htmlFor="iin" className="label">
-            ИИН
-          </label>
-          <input
-            type="text"
-            id="iin"
-            placeholder="ИИН"
-            value={state.iin}
+          <TextField
+            id="name"
+            label="Имя"
+            placeholder="Имя"
+            value={state.name}
+            name="name"
             onChange={inputChangeHandler}
-            name="iin"
+          />
+          <TextField
+            id="surname"
+            label="Фамилия"
+            placeholder="Фамилия"
+            value={state.surname}
+            name="surname"
+            onChange={inputChangeHandler}
           />
         </div>
 
-        <div
-          className="input_container"
-          style={{ display: "flex", flexDirection: "column" }}
-        >
-          <label htmlFor="taxation" className="label">
-            Режим налогообложения
-          </label>
-          <select
-            id="taxation"
-            value={state.taxation}
-            onChange={inputChangeHandler}
-            name="taxation"
-          >
-            {taxationCategories.map((category) => (
-              <option key={category} value={category}>
-                {category}
-              </option>
-            ))}
-          </select>
-        </div>
+        <TextField
+          id="iin"
+          label="ИИН"
+          placeholder="ИИН"
+          value={state.iin}
+          name="iin"
+          onChange={inputChangeHandler}
+        />
 
-        <div
-          className="input_container"
-          style={{ display: "flex", flexDirection: "column" }}
-        >
-          <label htmlFor="income" className="label">
-            Ваш доход за пол года
-          </label>
-          <input
-            type="number"
-            id="income"
-            placeholder="Введите доход"
-            value={state.income}
-            onChange={inputChangeHandler}
-            name="income"
-          />
-        </div>
+        <TextField
+          id="taxation"
+          label="Режим налогообложения"
+          placeholder=""
+          value={state.taxation}
+          name="taxation"
+          onChange={inputChangeHandler}
+          options={taxationCategories}
+        />
+
+        <TextField
+          id="income"
+          label="Ваш доход за пол года"
+          type="number"
+          placeholder="Введите доход"
+          value={state.income}
+          name="income"
+          onChange={inputChangeHandler}
+        />
       </div>
     </div>
   );

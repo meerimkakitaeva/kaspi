@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Cuprum:wght@400;700&display=swap');
+
+
 body {
-    font-size: 16px;
+    font-family: 'Cuprum', sans-serif;
     line-height: 24px;
-    margin: 0;
 }
 
 
