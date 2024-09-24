@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Card from "../UI/Card";
 import { Link, useNavigate } from "react-router-dom";
 import arrowIcon from "../../assets/arrowLeft.svg";
-import { formData, income, ipn, opv, so, vosms } from "../../constants";
+import { income, ipn, opv, so, vosms } from "../../constants";
 import Button from "../UI/Button";
 
 const TaxesPage = () => {
@@ -32,15 +32,22 @@ const TaxesPage = () => {
   };
 
   const resetData = () => {
-    localStorage.removeItem("formData");
+    localStorage.removeItems("formData", "taxesData");
   };
-
-  if (!formData) {
-    navigate("/");
-  }
 
   const onSend = () => {
     if (Object.values(selectedCard).some(Boolean)) {
+      const total = totalTaxes();
+
+      const taxesData = {
+        ipn: selectedCard.ipn ? ipn : 0,
+        so: selectedCard.so ? so : 0,
+        opv: selectedCard.opv ? opv : 0,
+        vosms: selectedCard.vosms ? vosms : 0,
+        total: total,
+      };
+
+      localStorage.setItem("taxesData", JSON.stringify(taxesData));
       navigate("/final");
     }
   };
