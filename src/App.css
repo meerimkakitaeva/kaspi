@@ -75,3 +75,39 @@ input::placeholder {
 .custom-button:focus {
     box-shadow: 0 4px 25px rgba(157, 157, 157, 0.5);
 }
+
+.card {
+    border-radius: 6px;
+    box-shadow: 0 4px 25px rgba(157, 157, 157, 0.5);
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 14px;
+    max-width: 325px;
+    flex-direction: column;
+    padding: 16px 16px 6px 25px;
+}
+
+.card_left,
+.card_right {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.card_left {
+    justify-content: space-between;
+}
+
+.card_right {
+    align-items: flex-end;
+}
+
+.card_number {
+    font-size: 24px;
+    display: block;
+}
+
+.card_left {
+    display: flex;
+    justify-content: space-between;
+}
