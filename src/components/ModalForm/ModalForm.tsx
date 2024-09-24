@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 import { ICalculate } from "../../types";
 import TextField from "../UI/Textfield";
 import Button from "../UI/Button";
@@ -15,6 +15,14 @@ const ModalForm = () => {
   });
   const navigate = useNavigate();
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
+
+  useEffect(() => {
+    const savedData = localStorage.getItem("formData");
+    if (savedData) {
+      setState(JSON.parse(savedData));
+    }
+  }, []);
+
   const inputChangeHandler = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {
@@ -56,7 +64,6 @@ const ModalForm = () => {
 
     if (allFields) {
       localStorage.setItem("formData", JSON.stringify(state));
-      console.log("Данные сохранены в localStorage:", state);
       navigate("/taxes");
       setErrors({});
     } else {

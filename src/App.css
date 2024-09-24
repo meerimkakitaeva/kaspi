@@ -6,7 +6,6 @@ body {
     line-height: 24px;
 }
 
-
 .container {
     max-width: 1200px;
     padding: 0 15px;
@@ -124,4 +123,11 @@ input::placeholder {
     margin-top: 55px;
     font-weight: 500;
     font-style: italic;
+}
+
+.final_title {
+    font-size: 32px;
+    font-style: italic;
+    line-height: 40px;
+    margin-bottom: 15px;
 }
