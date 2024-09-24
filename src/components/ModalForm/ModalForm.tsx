@@ -3,6 +3,7 @@ import { ICalculate } from "../../types";
 import TextField from "../UI/Textfield";
 import Button from "../UI/Button";
 import { useNavigate } from "react-router-dom";
+import { taxationCategories } from "../../constants";
 
 const ModalForm = () => {
   const [state, setState] = useState<ICalculate>({
@@ -14,7 +15,6 @@ const ModalForm = () => {
   });
   const navigate = useNavigate();
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
-  const taxationCategories = ["Упрощенный", "Общеустановленный"];
   const inputChangeHandler = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {

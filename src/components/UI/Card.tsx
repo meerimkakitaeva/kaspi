@@ -7,20 +7,22 @@ interface Props {
   text: string;
   name: string;
   selected: boolean;
+  onSelect: (selected: boolean) => void;
 }
 
-const Card: React.FC<Props> = ({ number, selected, name, text }) => {
+const Card: React.FC<Props> = ({ number, selected, name, text, onSelect }) => {
   const [isSelected, setIsSelected] = useState(selected);
 
-  const onSelect = (selected: boolean) => {
+  const handleSelect = (selected: boolean) => {
     setIsSelected(selected);
+    onSelect(selected);
   };
 
   return (
     <div className="card">
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <div className="card_left">
-          <CheckBox selected={isSelected} onSelect={onSelect} />
+          <CheckBox selected={isSelected} onSelect={handleSelect} />
         </div>
         <div className="card_right">
           <span style={{ fontSize: "24px" }}>{name}</span>
@@ -37,7 +39,7 @@ const Card: React.FC<Props> = ({ number, selected, name, text }) => {
           }}
         >
           <div className="card_number">
-            <span>{number}</span>
+            <span>{number} ₸</span>
           </div>
           <div>
             <img src={image} alt="!" width="24" height="24" />
