@@ -11,6 +11,8 @@ interface Props {
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => void;
   options?: string[];
+  required: boolean;
+  onKeyPress?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
 const TextField: React.FC<Props> = ({
@@ -22,6 +24,8 @@ const TextField: React.FC<Props> = ({
   name,
   onChange,
   options,
+  required,
+  onKeyPress,
 }) => {
   return (
     <div
@@ -41,6 +45,7 @@ const TextField: React.FC<Props> = ({
         </select>
       ) : (
         <input
+          onKeyPress={onKeyPress}
           type={type}
           id={id}
           placeholder={placeholder}
@@ -48,6 +53,7 @@ const TextField: React.FC<Props> = ({
           onChange={onChange}
           name={name}
           style={{ color: "D9D9D9", fontSize: "14px" }}
+          required={required}
         />
       )}
     </div>
