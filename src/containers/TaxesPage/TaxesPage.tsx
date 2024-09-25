@@ -69,7 +69,7 @@ const TaxesPage = () => {
     if (!formData) {
       navigate("/");
     }
-  }, [formData]);
+  }, [formData, navigate]);
 
   return (
     <div className="container container_inner">

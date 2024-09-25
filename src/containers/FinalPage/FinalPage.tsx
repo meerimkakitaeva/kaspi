@@ -38,7 +38,7 @@ const FinalPage: React.FC = () => {
     if (!formData || !taxesData) {
       navigate("/");
     }
-  }, []);
+  }, [navigate]);
 
   const details = [
     { label: "Имя", value: state.name },
