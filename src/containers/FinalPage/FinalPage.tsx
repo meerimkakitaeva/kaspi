@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import doneIcon from "../../assets/doneIcon.svg";
 import { ICalculate } from "../../types";
-import List from "../UI/List";
-import { Link } from "react-router-dom";
+import List from "../../components/UI/List";
+import { Link, useNavigate } from "react-router-dom";
 
 const FinalPage: React.FC = () => {
   const [state, setState] = useState<ICalculate>({
@@ -15,13 +15,14 @@ const FinalPage: React.FC = () => {
 
   const [taxesData, setTaxesData] = useState<any>(null);
   const totalTaxes = localStorage.getItem("totalTaxes");
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const savedData = localStorage.getItem("formData");
+    const formData = localStorage.getItem("formData");
     const taxesData = localStorage.getItem("taxesData");
 
-    if (savedData) {
-      setState(JSON.parse(savedData));
+    if (formData) {
+      setState(JSON.parse(formData));
     }
 
     if (taxesData) {
@@ -32,6 +33,10 @@ const FinalPage: React.FC = () => {
       );
 
       setTaxesData(filteredTaxesData);
+    }
+
+    if (!formData || !taxesData) {
+      navigate("/");
     }
   }, []);
 
@@ -48,15 +53,11 @@ const FinalPage: React.FC = () => {
   };
 
   return (
-    <div
-      className="container"
-      style={{ display: "flex", flexDirection: "column", maxWidth: "365px" }}
-    >
+    <div className="container container_inner">
       <div
+        className="flex_between"
         style={{
           marginTop: "20px",
-          display: "flex",
-          justifyContent: "space-between",
           flexDirection: "column",
           alignItems: "center",
           marginBottom: "80px",

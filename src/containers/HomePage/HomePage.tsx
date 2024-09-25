@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const ButtonPage = () => {
   return (
-    <div className="containerMobile">
+    <div className="container container_inner">
       <Link to="/form" className="mainBtn">
         Налоговый вычет
       </Link>

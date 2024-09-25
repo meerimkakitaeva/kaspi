@@ -1,11 +1,11 @@
 import React, { FormEvent, useEffect, useState } from "react";
 import { ICalculate } from "../../types";
-import TextField from "../UI/Textfield";
-import Button from "../UI/Button";
 import { useNavigate } from "react-router-dom";
 import { taxationCategories } from "../../constants";
+import TextField from "../../components/UI/Textfield";
+import Button from "../../components/UI/Button";
 
-const ModalForm = () => {
+const FormPage = () => {
   const [state, setState] = useState<ICalculate>({
     name: "",
     surname: "",
@@ -72,10 +72,7 @@ const ModalForm = () => {
   };
 
   return (
-    <div
-      className="container"
-      style={{ display: "flex", flexDirection: "column", maxWidth: "365px" }}
-    >
+    <div className="container container_inner ">
       <h4
         style={{
           lineHeight: "40px",
@@ -171,4 +168,4 @@ const ModalForm = () => {
   );
 };
 
-export default ModalForm;
+export default FormPage;

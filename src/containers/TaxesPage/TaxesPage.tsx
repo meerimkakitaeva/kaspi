@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
-import Card from "../UI/Card";
+import Card from "../../components/UI/Card";
 import { Link, useNavigate } from "react-router-dom";
 import arrowIcon from "../../assets/arrowLeft.svg";
-import Button from "../UI/Button";
+import Button from "../../components/UI/Button";
 import { getFormData, getIncome } from "../../constants";
+import { ISelectedCard } from "../../types";
 
 const TaxesPage = () => {
   const navigate = useNavigate();
 
-  const [selectedCard, setSelectedCard] = useState({
+  const [selectedCard, setSelectedCard] = useState<ISelectedCard>({
     ipn: false,
     so: false,
     opv: false,
@@ -71,10 +72,7 @@ const TaxesPage = () => {
   }, [formData]);
 
   return (
-    <div
-      className="container"
-      style={{ display: "flex", flexDirection: "column", maxWidth: "365px" }}
-    >
+    <div className="container container_inner">
       <Link
         style={{
           marginBottom: "23px",
@@ -93,14 +91,14 @@ const TaxesPage = () => {
         />
         Заплатить налоги за ИП
       </Link>
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
+      <div className="flex_between">
         <h3
           className="general_titles"
           style={{ marginTop: "35px", lineHeight: "22px", fontWeight: 500 }}
         >
           Ваш доход за <br /> полугодие:
         </h3>
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div className="flex_between">
           <h4 className="income">{Math.round(income)}</h4>
           <span
             className="income"
@@ -139,7 +137,7 @@ const TaxesPage = () => {
         onSelect={(selected) => onCardClick("vosms", selected)}
       />
 
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
+      <div className="flex_between">
         <h3
           className="general_titles"
           style={{ marginTop: "35px", lineHeight: "22px", fontWeight: 500 }}
@@ -147,7 +145,7 @@ const TaxesPage = () => {
           Итого к оплате за
           <br /> полугодие:
         </h3>
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div className="flex_between">
           <h4 className="income">{totalTaxes()}</h4>
           <span
             className="income"

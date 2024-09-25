@@ -5,3 +5,10 @@ export interface ICalculate {
   taxation: string;
   income: number;
 }
+
+export interface ISelectedCard {
+  ipn: boolean;
+  so: boolean;
+  opv: boolean;
+  vosms: boolean;
+}
